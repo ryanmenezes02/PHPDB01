@@ -1,69 +1,41 @@
 <?php
 
-//Essa deve ser SEMPRE a primeira linha de código do site.
+/**
+ * Gera conteúdo sempre em UTF-8.
+ * DEVE SER sempre a primeira linha de código.
+ */
 header('Content-Type: text/html; charset=utf-8');
 
 /**
- * Conexão com o banco de dados:
- *       As variáveis abaixo devem ser definidas conforme o provedor de hospedagem
- *       Os dados a baixo são do XAMPP.
+ * Dados de conexão com o banco de dados.
  */
 $db = array(
-    "hostname" => "localhost",
-    "database" => "vitugo",
-    "username" => "root",
-    "password" => ""
+    'hostname' => 'localhost',
+    'username' => 'root',
+    'password' => '',
+    'database' => 'vitugo'
 );
+
 /**
  * Linha de conexão com o banco de dados.
  */
 $conn = new mysqli($db['hostname'], $db['username'], $db['password'], $db['database']);
 
 /**
- * SQL de teste do banco de dados.
+ * Seta transações entre MySQL/MariaDB e PHP para UTF-8.
  */
-$sql = "SELECT * FROM articles WHERE art_status = 'on'";
+$conn->query("SET NAMES 'utf8'");
+$conn->query('SET character_set_connection=utf8');
+$conn->query('SET character_set_client=utf8');
+$conn->query('SET character_set_results=utf8');
 
 /**
- * Executa a query, armazenando o resultado em '$res'
+ * Seta dias da semana e meses do MySQL/MariaDB para "português do Brasil".
  */
-$res = $conn->query($sql);
+$conn->query('SET GLOBAL lc_time_names = pt_BR');
+$conn->query('SET lc_time_names = pt_BR');
 
 /**
- * Loop para obter cada um dos registros.
- * O método 'fetch_assoc()' retorna cada registro dentro de um array.
+ * Define o fuso horário (opcional + recomendado).
  */
-while ($article = $res->fetch_assoc()) {
-
-    /**
-     * Exibindo valor da array no HTML.
-     */
-    echo '<pre>';
-    print_r($article);
-    echo '</pre>';
-}
-
-/**
- * SQL de teste com o banco de dados.
- * Usando HEREDOC.
- */
-$sql = <<<SQL
-
-INSERT INTO contacts (
-    name,
-    email,
-    subject,
-    message
-) VALUES (
-    'Joca',
-    'joca@joca',
-    'Contato do Joca',
-    'Mensagem do Joca'
-);
-
-SQL;
-
-/**
- * Executa a query, armazenando o resultado em '$res'
- */
-$conn->query($sql);
+date_default_timezone_set('America/Sao_Paulo');
