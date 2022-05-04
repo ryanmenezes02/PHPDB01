@@ -5,7 +5,7 @@ DROP DATABASE IF EXISTS vitugo;
 CREATE DATABASE vitugo CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- Seleciona banco de dados.
-USE vitugo;
+USE vitugo; 
 
 -- Cria tabela de usuários/autores.
 CREATE TABLE users (

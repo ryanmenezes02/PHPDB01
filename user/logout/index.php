@@ -9,19 +9,18 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
  * Seus códigos PHP desta página iniciam aqui! *
  ***********************************************/
 
- //Se o usuário não está logado, redireciona para a página inicial.
- if(!isset($_COOKIE['user'])) header('Location: /');
+// Se usuário não está logado, redireciona para a página inicial.
+if(!isset($_COOKIE['user'])) header('Location: /');
 
- // Se existe a variável 'logout' no URL da página...
- if($_SERVER['QUERY_STRING'] === 'logout') {
+// Se existe a variável 'logout' no URL da página...
+if ($_SERVER['QUERY_STRING'] === 'logout') {
 
     // Apagar o cookie, colocando o tempo de vida negativo (-1)
     setcookie('user', '', -1, '/');
 
     // Redirecionar para a 'home'
     header('Location: /');
-
- }
+}
 
 /************************************************
  * Seus códigos PHP desta página terminam aqui! *
@@ -44,10 +43,11 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
     <h2>Logout / Sair</h2>
     <p>Se você sair do aplicativo agora, terá que entrar novamente para ter acesso ao conteúdo exclusivo.</p>
     <p>Clique no botão abaixo para sair.</p>
-    <p class="btn-center">
-        <button type="button" 
-        onclick="location.href = '?logout'"
-        >Sair</button>
+    <p class="text-center">
+        <button class="btn-logout" type="button" onclick="location.href = '?logout'">
+            <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+            Logout / Sair
+        </button>
     </p>
 
 </section>
