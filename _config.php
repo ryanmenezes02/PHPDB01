@@ -162,7 +162,7 @@ function dump($variable, $exit = true, $pre = true)
  * 
  *      • Envia somente uma imagem por vez;
  *      • Suporta imagens nos formatos "jpeg", "jpg" e "png";
- *      • Suporta imagens de, no máximo, 5 megabytes;
+ *      • Suporta imagens de, no máximo, 1 megabyte;
  *      • Somente imagens quadradas;
  *      • Imagens com dimensões mínimas de 64 x 64 pixels;
  *      • Imagens com dimensões máximas de 512 x 512 pixels;
@@ -197,14 +197,14 @@ function upload_photo($photo_dir, $photo_name = '')
         $photo_type !== 'image/png'
     ) {
 
-        $error .= "A imagem não está em um formato válido.";
+        $error .= "A foto não está em um formato válido.";
 
         // Testa o tamanho da imagem.
     } elseif (
-        $photo_data['size'] > 5000000   // Imagem tem mais que 5 megabytes?
+        $photo_data['size'] > 1000000   // Imagem tem mais que 1 megabyte?
     ) {
 
-        $error .= "A imagem deve ter menos de 5MB.";
+        $error .= "A foto deve ter menos de 1MB.";
 
         // Testa as dimensões da imagem.
     } elseif (
@@ -213,7 +213,7 @@ function upload_photo($photo_dir, $photo_name = '')
         $photo_width !== $photo_height   // Largura e altura são diferentes?
     ) {
 
-        $error .= "A imagem deve ser quadrada entre 64px e 512px.";
+        $error .= "A foto não está em um formato válido.";
 
         // Salvando a imagem no destino.
     } else {
@@ -221,7 +221,7 @@ function upload_photo($photo_dir, $photo_name = '')
         if (move_uploaded_file($photo_data["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $photo_url)) {
             $return_url .= $photo_url;
         } else {
-            $error .= "Erro ao enviar imagem.";
+            $error .= "Erro ao enviar foto.";
         }
     }
 
