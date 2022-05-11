@@ -130,7 +130,6 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
         ?>
 
         <p>Logue-se para ter acesso ao conteúdo exclusivo. Se ainda não se cadastrou, <a href="/user/new/">cadastre-se aqui</a>.</p>
-        <small>Senha de teste (apague isso!) &rarr; Qw3rtyui0P</small>
 
         <p>
             <label for="email">E-mail:</label>
@@ -139,8 +138,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_header.php');
 
         <p>
             <label for="password">Senha:</label>
-            <input type="password" name="password" id="password" autocomplete="off" required class="valid password" value="" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{7,32}$">
-            <button type="button" id="passToggle"><i class="fa-solid fa-eye fa-fw"></i></button>
+            <input type="password" name="password" id="password" autocomplete="off" required class="valid password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{7,32}$">
+            <button type="button" id="passToggle" data-field="password"><i class="fa-solid fa-eye fa-fw"></i></button>
         </p>
 
         <p>
